@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/theme/theme.dart';
 import 'package:provider/provider.dart';
 import '../../comuunism/comuunism_model.dart';
 
@@ -26,10 +27,22 @@ class _FootballPageState extends State<FootballPage> {
       return ChangeNotifierProvider(
           create: (_) => model,
           child: Scaffold(
-            appBar: AppBar(),
-            body: ListView.builder(
-                itemCount: 3,
-                itemBuilder: (context, index) => Item(index: index)),
+            body: Column(
+              children: [
+                Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                      gradient: MyTheme.colorGradient2(),
+                      borderRadius:
+                          BorderRadius.vertical(bottom: Radius.circular(40))),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: 3,
+                      itemBuilder: (context, index) => Item(index: index)),
+                ),
+              ],
+            ),
           ));
     } else {
       return const Center(
