@@ -32,7 +32,7 @@ class MyWidgetBode extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
           child: Text(
-            'Хуета большая',
+            'Choose a sport',
             style: TextStyle(
               fontWeight: FontWeight.w800,
               fontSize: 25,
@@ -116,20 +116,20 @@ class Items extends StatelessWidget {
                 ),
               ),
               const Text(
-                'хуета мелкая',
+                'choose icon or container',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 12,
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     icon[index],
-                    color: Color.fromARGB(255, 69, 153, 202),
+                    color: const Color.fromARGB(255, 69, 153, 202),
                     size: 30,
                   ),
                 ],
