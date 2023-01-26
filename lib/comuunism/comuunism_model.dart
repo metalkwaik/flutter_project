@@ -1,18 +1,11 @@
-import 'package:flutter_application_1/entiti/sport.dart';
+import '../entiti/categorys.dart';
 
-class CommunismModel extends SportModel {
-  CommunismModel({required this.sportKey});
+class CommunismModel extends CategoriesModel {
+  CommunismModel({required this.CategoriesKey});
 
-  var a = true;
-  int sportKey;
-  Sport sport(context) {
-    Sport item = getSport(context, sportKey);
+  int CategoriesKey;
+  Categories sport(context) {
+    Categories item = getCategories(context, CategoriesKey);
     return item;
-  }
-
-  bool tog() {
-    a = !a;
-    notifyListeners();
-    return a;
   }
 }

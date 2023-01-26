@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widget/text.dart';
 import 'package:provider/provider.dart';
-import '../../comuunism/comuunism_model.dart';
-import '../../theme/theme.dart';
+import '../comuunism/comuunism_model.dart';
+import '../theme/theme.dart';
 
-class FootballPage extends StatefulWidget {
-  const FootballPage({super.key});
+class ColdDrinks extends StatefulWidget {
+  const ColdDrinks({super.key});
   @override
-  State<FootballPage> createState() => _FootballPageState();
+  State<ColdDrinks> createState() => _ColdDrinksState();
 }
 
-class _FootballPageState extends State<FootballPage> {
+class _ColdDrinksState extends State<ColdDrinks> {
   CommunismModel? _model;
   @override
   void didChangeDependencies() {
     if (_model == null) {
-      final sportKey = ModalRoute.of(context)!.settings.arguments as int;
-      _model = CommunismModel(sportKey: sportKey);
+      final CategoriesKey = ModalRoute.of(context)!.settings.arguments as int;
+      _model = CommunismModel(CategoriesKey: CategoriesKey);
     }
     super.didChangeDependencies();
   }
@@ -52,7 +52,7 @@ class _FootballPageState extends State<FootballPage> {
                           ),
                           const SizedBox(width: 20),
                           const Text(
-                            'FOOTBALL',
+                            'ColdDrinks',
                             style: TextStyle(fontSize: 23),
                           )
                         ],

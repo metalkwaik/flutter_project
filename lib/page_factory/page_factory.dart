@@ -1,19 +1,28 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_application_1/pages/football/football_page.dart';
-import 'package:flutter_application_1/pages/home.dart';
+import 'package:flutter_application_1/categories%20in%20navigation/cold_drinks.dart';
+import 'package:flutter_application_1/pages/home/home.dart';
 import 'package:provider/provider.dart';
-import '../entiti/sport.dart';
-import '../hockey/hockey_page.dart';
-import '../swim/swim_page.dart';
-import '../tennis/tennis_page.dart';
+import '../categories in navigation/hot_drinks.dart';
+import '../categories in navigation/burger.dart';
+import '../categories in navigation/pizza.dart';
+import '../entiti/categorys.dart';
+import '../model_Bar_Bottom.dart';
 
-class PageFactory {
-  Widget mainPage() => ChangeNotifierProvider(
-        create: (_) => SportModel(),
-        child: const HomeScreen(),
+class PageFactoryCategories {
+  Widget mainPage() => MultiProvider(
+        providers: [
+          ChangeNotifierProvider<CategoriesModel>(
+            create: (_) => CategoriesModel(),
+          ),
+          ChangeNotifierProvider<ClassBarBottomModel>(
+            create: (_) => ClassBarBottomModel(),
+          ),
+        ],
+        child: HomeScreen(),
       );
-  Widget footballPage() => const FootballPage();
-  Widget hockeyPage() => const HockeyPage();
-  Widget tennisPage() => const TennisPage();
-  Widget swimPage() => const SwimPage();
+
+  Widget coldDrinks() => const ColdDrinks();
+  Widget hotDrinks() => const HotDrinks();
+  Widget pizza() => const Pizza();
+  Widget burger() => const Burger();
 }

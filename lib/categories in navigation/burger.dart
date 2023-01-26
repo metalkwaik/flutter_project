@@ -4,19 +4,19 @@ import '../comuunism/comuunism_model.dart';
 import '../theme/theme.dart';
 import '../widget/text.dart';
 
-class SwimPage extends StatefulWidget {
-  const SwimPage({super.key});
+class Burger extends StatefulWidget {
+  const Burger({super.key});
   @override
-  State<SwimPage> createState() => _SwimPageState();
+  State<Burger> createState() => _BurgerState();
 }
 
-class _SwimPageState extends State<SwimPage> {
+class _BurgerState extends State<Burger> {
   CommunismModel? _model;
   @override
   void didChangeDependencies() {
     if (_model == null) {
-      final sportKey = ModalRoute.of(context)!.settings.arguments as int;
-      _model = CommunismModel(sportKey: sportKey);
+      final CategoriesKey = ModalRoute.of(context)!.settings.arguments as int;
+      _model = CommunismModel(CategoriesKey: CategoriesKey);
     }
     super.didChangeDependencies();
   }
@@ -52,7 +52,7 @@ class _SwimPageState extends State<SwimPage> {
                           ),
                           const SizedBox(width: 20),
                           const Text(
-                            'SWIM',
+                            'Burger',
                             style: TextStyle(fontSize: 23),
                           )
                         ],
@@ -86,13 +86,13 @@ class Item extends StatefulWidget {
 class _ItemState extends State<Item> {
   bool _isShow = false;
   final List _listVopros = <String>[
-    'famous players',
-    'top fastest swimmers',
-    '3 facts'
+    'small burger size',
+    'average burger size',
+    'large burger size'
   ];
 
   final List _listOpisanie = <Widget>[
-    Column(
+    Row(
       children: const [
         Mytext(
             text:
@@ -104,7 +104,7 @@ class _ItemState extends State<Item> {
         ImgRadius(img: 'asset/Michael Phelps.jpg'),
       ],
     ),
-    Column(
+    Row(
       children: const [
         Mytext(
             text:
@@ -116,7 +116,7 @@ class _ItemState extends State<Item> {
         ImgRadius(img: 'asset/Frederick Busquet.jpg')
       ],
     ),
-    Column(
+    Row(
       children: const [
         Mytext(
             text:

@@ -4,19 +4,19 @@ import '../comuunism/comuunism_model.dart';
 import '../theme/theme.dart';
 import '../widget/text.dart';
 
-class TennisPage extends StatefulWidget {
-  const TennisPage({super.key});
+class Pizza extends StatefulWidget {
+  const Pizza({super.key});
   @override
-  State<TennisPage> createState() => _TennisPageState();
+  State<Pizza> createState() => _PizzaState();
 }
 
-class _TennisPageState extends State<TennisPage> {
+class _PizzaState extends State<Pizza> {
   CommunismModel? _model;
   @override
   void didChangeDependencies() {
     if (_model == null) {
-      final sportKey = ModalRoute.of(context)!.settings.arguments as int;
-      _model = CommunismModel(sportKey: sportKey);
+      final CategoriesKey = ModalRoute.of(context)!.settings.arguments as int;
+      _model = CommunismModel(CategoriesKey: CategoriesKey);
     }
     super.didChangeDependencies();
   }
@@ -52,7 +52,7 @@ class _TennisPageState extends State<TennisPage> {
                           ),
                           const SizedBox(width: 20),
                           const Text(
-                            'TENNIS',
+                            'Pizza',
                             style: TextStyle(fontSize: 23),
                           )
                         ],
