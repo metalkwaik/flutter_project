@@ -1,28 +1,32 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_application_1/categories%20in%20navigation/cold_drinks.dart';
-import 'package:flutter_application_1/pages/home/home.dart';
+import 'package:flutter_application_1/pages/menu/menu.dart';
+import 'package:flutter_application_1/pages/stac_page/stac_pages.dart';
+import 'package:flutter_application_1/pages/stac_page/stac_page_controller.dart/pages_controller.dart';
 import 'package:provider/provider.dart';
-import '../categories in navigation/hot_drinks.dart';
-import '../categories in navigation/burger.dart';
-import '../categories in navigation/pizza.dart';
-import '../entiti/categorys.dart';
-import '../model_Bar_Bottom.dart';
 
-class PageFactoryCategories {
+import '../pages/home/home.dart';
+import '../pages/home/home_controller/home_controller.dart';
+import '../pages/menu/menu_controller/menu_controller.dart';
+
+class FactoryPage {
   Widget mainPage() => MultiProvider(
         providers: [
-          ChangeNotifierProvider<CategoriesModel>(
-            create: (_) => CategoriesModel(),
-          ),
-          ChangeNotifierProvider<ClassBarBottomModel>(
-            create: (_) => ClassBarBottomModel(),
+          ChangeNotifierProvider<PagesController>(
+            create: (_) => PagesController(),
           ),
         ],
-        child: HomeScreen(),
+        child: const StacPages(),
       );
 
-  Widget coldDrinks() => const ColdDrinks();
-  Widget hotDrinks() => const HotDrinks();
-  Widget pizza() => const Pizza();
-  Widget burger() => const Burger();
+
+  Widget makeMenu() => ChangeNotifierProvider(
+        create: (_) => MenuController(),
+        child: const MenuPage(),
+      );
+
+  Widget makeHome() => ChangeNotifierProvider(
+        create: (_) => HomeController(),
+        child: const HomePage(),
+      );
+
 }
