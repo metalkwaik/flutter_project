@@ -16,11 +16,19 @@ class MenuController extends ChangeNotifier {
   List<ProductData>? get productData => _productData;
   CategoryPage categoryPageName = CategoryPage.burgers;
 
+
+  late SharedPreferences _prefs;
+  late Map<String, dynamic> _productMap;
+
   Future<void> _init() async {
-    final prefs = await SharedPreferences.getInstance();
-    Map<String, dynamic> productMap = jsonDecode(
-        prefs.getString(Constenst.LOCOL_KEY_GLOBAL_VALUE.keys.first) as String);
-    final ct = Products.fromJson(productMap).categoris!;
+    _prefs = await SharedPreferences.getInstance();
+    _productMap = jsonDecode(_prefs
+        .getString(Constenst.LOCOL_KEY_GLOBAL_VALUE.keys.first) as String);
+    setCaterory();
+  }
+
+  setCaterory() {
+    final ct = Products.fromJson(_productMap).categoris!;
     switch (categoryPageName) {
       case CategoryPage.burgers:
         _productData = ct.burgers!.products as List<ProductData>;
@@ -31,9 +39,10 @@ class MenuController extends ChangeNotifier {
       case CategoryPage.snacks:
         _productData = ct.snacks!.products;
         break;
+      default:
+        _productData = [];
     }
-    print(categoryPageName);
-    print(_productData!.first.name);
+
     notifyListeners();
   }
 
@@ -41,7 +50,7 @@ class MenuController extends ChangeNotifier {
   setScreen(int index) {
     categoryPageName = CategoryPage.values[index];
     currentIndexPage = index;
-    _init();
+    setCaterory();
     notifyListeners();
   }
 }

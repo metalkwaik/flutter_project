@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../../models/item_model.dart';
 import 'menu_controller/menu_controller.dart';
 
-
 class MenuBody extends StatelessWidget {
   const MenuBody({super.key});
   @override
@@ -34,6 +33,10 @@ class _ItemBuilder extends StatelessWidget {
       color: Colors.teal,
       child: Row(
         children: [
+          InkWell(
+            onTap: () {},
+            child: Icon(Icons.add),
+          ),
           Container(
             color: Colors.teal[200],
             child: Image(
@@ -52,7 +55,8 @@ class _ItemBuilder extends StatelessWidget {
                 Text(' ${item.price}\$'),
               ],
             ),
-          )
+          ),
+
         ],
       ),
     );
