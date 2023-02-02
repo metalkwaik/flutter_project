@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
+import 'bindings/api/api_data_json.dart';
 import 'navigation/main_navigation.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Dep().initFirebase();
+  await Dep().initData();
   runApp(const MyApp());
 }
 

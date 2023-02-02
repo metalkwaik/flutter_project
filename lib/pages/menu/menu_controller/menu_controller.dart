@@ -1,37 +1,47 @@
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../bindings/api/api_data_json.dart';
+import '../../../models/item_model.dart';
+
+enum CategoryPage { burgers, drinks, snacks }
 
 class MenuController extends ChangeNotifier {
   late FirebaseFirestore db;
   MenuController() {
-    setap();
+    _init();
   }
+  List<ProductData>? _productData = [];
+  List<ProductData>? get productData => _productData;
+  CategoryPage categoryPageName = CategoryPage.burgers;
 
-  /// сделаешь потом приватную , а то я проверял нажатием на кнопку , но она долдна вызыватся только 1 раз (7 строка )
-  setap() async {
-    db = FirebaseFirestore.instance;
-// первый способ
-    db.collection("item").doc("MgYSOyVLxvvtA8qe1hJi").get().then(
-      (DocumentSnapshot doc) {
-        final data = doc.data() as Map<String, dynamic>;
-        data.forEach((key, value) => print('$key  - $value'));
-      },
-    );
-
-// второй способ если не ебешь шо за key
-    db.collection("item").get().then(
-          (res) => res.docs.forEach(
-            (element) => print(element.data()),
-          ),
-        );
+  Future<void> _init() async {
+    final prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic> productMap = jsonDecode(
+        prefs.getString(Constenst.LOCOL_KEY_GLOBAL_VALUE.keys.first) as String);
+    final ct = Products.fromJson(productMap).categoris!;
+    switch (categoryPageName) {
+      case CategoryPage.burgers:
+        _productData = ct.burgers!.products as List<ProductData>;
+        break;
+      case CategoryPage.drinks:
+        _productData = ct.drinks!.products;
+        break;
+      case CategoryPage.snacks:
+        _productData = ct.snacks!.products;
+        break;
+    }
+    print(categoryPageName);
+    print(_productData!.first.name);
+    notifyListeners();
   }
 
   var currentIndexPage = 0;
-
-  List category = <String>['burgers', 'Dring', 'и тд', 'и тд', 'и тд', 'тд'];
-
   setScreen(int index) {
+    categoryPageName = CategoryPage.values[index];
     currentIndexPage = index;
+    _init();
     notifyListeners();
   }
 }

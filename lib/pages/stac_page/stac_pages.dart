@@ -16,8 +16,8 @@ class StacPages extends StatelessWidget {
         children: [
           factor.makeHome(),
           factor.makeMenu(),
-          Text('3'),
-          Text('4'),
+          const Text('3'),
+          const Text('4'),
         ],
       ),
     );
