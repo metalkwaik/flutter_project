@@ -37,13 +37,16 @@ class _ItemBuilder extends StatelessWidget {
             onTap: () {},
             child: Icon(Icons.add),
           ),
-          Container(
-            color: Colors.teal[200],
-            child: Image(
-              fit: BoxFit.cover,
-              width: 100,
-              image: NetworkImage(
-                item.img!,
+          InkWell(
+            onTap: () => ,
+            child: Container(
+              color: Colors.teal[200],
+              child: Image(
+                fit: BoxFit.cover,
+                width: 100,
+                image: NetworkImage(
+                  item.img!,
+                ),
               ),
             ),
           ),
